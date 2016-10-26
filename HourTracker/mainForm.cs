@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using Functions;
 
 namespace HourTracker
 {
@@ -52,14 +53,12 @@ namespace HourTracker
             frm.ShowDialog();
         }
 
-        // when date is selected go thru datafile and list ROs with matching date
         private void FillROListbox(object sender, DateRangeEventArgs e)
         {
             string arrayData;
-            string dataFile = Registry.GetValue("HKEY_CURRENT_USER\\Software\\HourTracker", "DataFile", null).ToString();
             string dateSelected = roDate.SelectionRange.Start.ToShortDateString().Replace(@"/", "");
             char[] splitChar = { '|' };
-            var file = new StreamReader(dataFile);
+            var file = new StreamReader(HoursFile.Location);
 
             roList.Items.Clear();
 

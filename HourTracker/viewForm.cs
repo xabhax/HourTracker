@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
+using Functions;
 
 namespace HourTracker
 {
@@ -27,10 +28,9 @@ namespace HourTracker
         private void FillListBox(string ro)
         {
             string arrayData;
-            string dataFile = Registry.GetValue("HKEY_CURRENT_USER\\Software\\HourTracker", "DataFile", null).ToString();
             char[] splitChar = { '|' };
 
-            var file = new StreamReader(dataFile);
+            var file = new StreamReader(HoursFile.Location);
 
             while ((arrayData = file.ReadLine()) != null)
             {

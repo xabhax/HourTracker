@@ -7,7 +7,11 @@ namespace HourTracker
 {
     public partial class addForm : Form
     {
-        // Main function of addform
+        /// <summary>
+        /// Called from mail dialog
+        /// </summary>
+        /// <param name="tmpdate">Passed date from main form with date selected from calendar</param>
+        /// <returns></returns>
         public addForm(string tmpdate)
         {
             InitializeComponent();
@@ -17,13 +21,22 @@ namespace HourTracker
             roDate.Enabled = false;
         }
 
-        // Return the service to addRO form
+        /// <summary>
+        /// Called from the add service form. Passed the service name
+        /// </summary>
+        /// <param name="Value">Service name</param>
+        /// <returns></returns>
         public void Doit(string Value)
         {
             serviceList.Items.Add(Value);
         }
 
-        // Add service to listbox of the addRO form
+        /// <summary>
+        /// Called by the ADDSERVICE button. Opens add the add service form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public void AddServiceClicked(object sender, EventArgs e)
         {
             addService frm = new addService();
@@ -34,7 +47,12 @@ namespace HourTracker
             frm.Close();
         }
 
-        // Compile all the ro data and add it to the datafile
+        /// <summary>
+        /// Called by ADDRO button iterates through service list listbox, adds to list, then calls RepairOrder.Add
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public void AddRoClicked(object sender, EventArgs e)
         {
             if (repairOrder.Text.Length != 0)
@@ -56,10 +74,15 @@ namespace HourTracker
 
         }
 
-        // Go back to the main dialog
+        /// <summary>
+        /// Called by Cancel button. Its pretty obvious what this does.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public void CancelButtonClicked(object sender, EventArgs e)
         {
-            this.Dispose();
+            Dispose();
         }
     }
 }
