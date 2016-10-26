@@ -1,8 +1,7 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
+using Functions;
 
 namespace HourTracker
 {
@@ -40,23 +39,15 @@ namespace HourTracker
         {
             if (repairOrder.Text.Length != 0)
             {
-                string dataFile = Registry.GetValue("HKEY_CURRENT_USER\\Software\\HourTracker", "DataFile", null).ToString();
-                string dateDone = roDate.SelectionRange.Start.ToShortDateString().Replace(@"/", "");
-
-                List<string> filedata = new List<string>();
-                filedata.Add(dateDone);
-                filedata.Add(repairOrder.Text);
+                List<string> ROServices = new List<string>();
+                string RODate = roDate.SelectionRange.Start.ToShortDateString().Replace(@"/", "");
 
                 foreach (var services in serviceList.Items)
                 {
-                    filedata.Add(services.ToString());
+                    ROServices.Add(services.ToString());
                 }
 
-                string writetofile = string.Join("|", filedata.ToArray());
-                StreamWriter sw0 = new StreamWriter(dataFile, true);
-                sw0.WriteLine(writetofile);
-                sw0.Close();
-                this.Dispose();
+                RepairOrder.Add(RODate, repairOrder.Text, ROServices);
             }
             else
             {
