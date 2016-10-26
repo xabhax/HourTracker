@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows.Forms;
+using Functions;
 
 namespace HourTracker
 {
@@ -14,25 +15,41 @@ namespace HourTracker
             button2.DialogResult = DialogResult.Cancel;
         }
 
-        // returns selected service to addform
+        /// <summary>
+        /// Called from add form to get the selected service in combobox
+        /// </summary>
+        /// <returns>Selected service in combobox</returns>
         public string getItem()
         {
             return servicesList.SelectedItem.ToString();
         }
 
-        // Empty function, but it serves a purpose none the less
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void AddServiceClicked(object sender, EventArgs e)
         {
             
         }
 
-        // obvious 
+        /// <summary>
+        /// Called from close button. Closes dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void CancelButtonClicked(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        // populate the combobox with the services added
+        /// <summary>
+        /// Fills the combo box with services stored in registry key "Hourtracker\Services"
+        /// </summary>
+        /// <returns></returns>
         private void FillComboBox()
         {
             RegistryKey root = Registry.CurrentUser.OpenSubKey("Software\\hourtracker\\services");
