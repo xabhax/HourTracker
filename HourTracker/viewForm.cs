@@ -18,13 +18,22 @@ namespace HourTracker
             FillListBox(repairOrder);
         }
 
-        // return to main dialog
+        /// <summary>
+        /// Returns us to the main dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void CloseButtonClicked(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        // iterate through datafile and fill listbox with services for given repair order
+        /// <summary>
+        /// iterate through datafile and fill listbox with services for given repair order
+        /// </summary>
+        /// <param name="ro"></param>
+        /// <returns></returns>
         private void FillListBox(string ro)
         {
             string arrayData;

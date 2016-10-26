@@ -8,6 +8,12 @@ namespace HourTracker
     {
         string requirelogin;
 
+        /// <summary>
+        /// Makes registry keys if this is the first run. If it isnt it will populate the data file location
+        /// and fill listbox with services from registry key
+        /// </summary>
+        /// <param name="firstrun">yes for never being run, and no if called from main dialog</param>
+        /// <returns></returns>
         public settingsForm(string firstrun)
         {
             InitializeComponent();
@@ -39,7 +45,12 @@ namespace HourTracker
             }
         }
 
-        // Get the path of the datafile and show it in the textbox
+        /// <summary>
+        /// Called from save file dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void SaveDataFile(object sender, EventArgs e)
         {
             SaveFileDialog datafiledlg = new SaveFileDialog();
@@ -57,7 +68,12 @@ namespace HourTracker
             }
         }
 
-        // add service to listbox
+        /// <summary>
+        /// Called from add service button. grabs text from text boxes and inputs into listbox 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void AddService(object sender, EventArgs e)
         {
             if (serviceName.Text.Contains(" ") != true)
@@ -78,7 +94,12 @@ namespace HourTracker
             }
         }
 
-        // handles the read only attributes of the uname and pword textboxs
+        /// <summary>
+        /// Handles the read only attributes for the username and password text boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void RequireLogin(object sender, EventArgs e)
         {
             if(userName.ReadOnly == true)
@@ -96,13 +117,23 @@ namespace HourTracker
             }
         }
 
-        // kind of clear what this does
+        /// <summary>
+        /// Obvious
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void CancelButtonClicked(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        // write everything needed to registry
+        /// <summary>
+        /// Goes through all text boxes and listbox and saves all information to the registry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void ApplyButtonClicked(object sender, EventArgs e)
         {
             if (requireLoginBox.Checked)
@@ -133,7 +164,12 @@ namespace HourTracker
             }
         }
 
-        // Restart program after settings are written to registry
+        /// <summary>
+        /// Called from restart button. Restarts application.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void RestartButtonClicked(object sender, EventArgs e)
         {
             Application.Restart();

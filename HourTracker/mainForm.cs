@@ -13,7 +13,12 @@ namespace HourTracker
             InitializeComponent();
         }
 
-        // goto settings form
+        /// <summary>
+        /// Passes setting form an argument to show we are not running for the first time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void SettingsButtonClicked(object sender, EventArgs e)
         {
             string firstrun = "no";
@@ -22,7 +27,12 @@ namespace HourTracker
             frm.ShowDialog();
         }
 
-        // ViewRO button was clicked, open up the viewform
+        /// <summary>
+        /// Called from View ro button. opens view ro button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void ViewButtonClicked(object sender, EventArgs e)
         {
             if (roList.SelectedItem == null)
@@ -39,13 +49,23 @@ namespace HourTracker
             }
         }
 
-        // close program
+        /// <summary>
+        /// Called from quit button. Closes program
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void QuitButtonClicked(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        // grabs the date and opens up the addro form
+        /// <summary>
+        /// Grabs selected date passes that as an argument to the add ro form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void AddROButtonClicked(object sender, EventArgs e)
         {
             string dateSelected = roDate.SelectionRange.Start.ToShortDateString();
@@ -53,6 +73,13 @@ namespace HourTracker
             frm.ShowDialog();
         }
 
+        /// <summary>
+        /// Called from view ro button. Grabs selected date from the calendar and reads data file
+        /// and shows ros with matching date
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void FillROListbox(object sender, DateRangeEventArgs e)
         {
             string arrayData;

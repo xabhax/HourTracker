@@ -14,7 +14,12 @@ namespace HourTracker
             AttemptCounter.Text = Counter.ToString();
         }
 
-        // check login credentials
+        /// <summary>
+        /// Called from the login button. Calls Credentials.Check against inputed username and password
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void CheckLogin(object sender, EventArgs e)
         {
             if (userName.Text.Length != 0 && passWord.Text.Length != 0)
@@ -48,7 +53,12 @@ namespace HourTracker
             }
         }  
         
-        // quit if cancel button pressed
+        /// <summary>
+        /// Called from cancel button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void CancelLogin(object sender, EventArgs e)
         {
             Dispose();
