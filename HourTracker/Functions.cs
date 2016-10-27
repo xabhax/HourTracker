@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace Functions
-{
+{    
     #region RO Service Functions
     public class Services
     {
@@ -119,7 +119,7 @@ namespace Functions
                     }
                 }
             }
-            var result = String.Join("|", ROServices.ToArray());
+            var result = String.Join("|", ROServices);
             return result;
         }
     }

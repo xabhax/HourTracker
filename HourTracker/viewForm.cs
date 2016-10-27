@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
 using Functions;
+using System.Collections.Generic;
 
 namespace HourTracker
 {
@@ -30,35 +31,26 @@ namespace HourTracker
         }
 
         /// <summary>
-        /// iterate through datafile and fill listbox with services for given repair order
+        /// gets the services associated with an ro, fills listbox with said services and adds up
+        /// flat rate time and displays it
         /// </summary>
-        /// <param name="ro"></param>
+        /// <param name="ro">Repair order to get services for</param>
         /// <returns></returns>
         private void FillListBox(string ro)
         {
-            string arrayData;
             char[] splitChar = { '|' };
+            var tmpService = RepairOrder.Services(ro).Split(splitChar);
+            decimal flag = 0;
 
-            var file = new StreamReader(HoursFile.Location);
-
-            while ((arrayData = file.ReadLine()) != null)
+            foreach (var Services in tmpService)
             {
-                string[] parsedData = arrayData.Split(splitChar);
-
-                if (parsedData[1] == ro)
-                {
-                    for (int i = 2; i < parsedData.Length; i++)
-                    {
-                        servicesList.Items.Add(parsedData[i].ToString());
-                        string tmp = Registry.GetValue("HKEY_CURRENT_USER\\Software\\HourTracker\\services", parsedData[i], null).ToString();
-                        decimal d = decimal.Parse(tmp);
-
-                        flag = flag + d;
-                    }
-                }
+                servicesList.Items.Add(Services);
+                string tmp = Registry.GetValue("HKEY_CURRENT_USER\\Software\\HourTracker\\services", Services, null).ToString();
+                decimal d = decimal.Parse(tmp);
+                flag = flag + d;
             }
+
             flaggedHoursDisplay.Text = flag.ToString();
-            file.Close();
         }
     }
 }

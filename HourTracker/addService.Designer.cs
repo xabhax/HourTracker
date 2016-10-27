@@ -80,9 +80,12 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.servicesList);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "addService";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Hour Tracker -- Add Services";
             this.ResumeLayout(false);
             this.PerformLayout();
