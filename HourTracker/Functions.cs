@@ -11,16 +11,32 @@ namespace Functions
     #region RO Service Functions
     public class Services
     {
+        /// <summary>
+        /// Adds service string to registry
+        /// </summary>
+        /// <param name="ServiceName">Name of service added</param>
+        /// <param name="Hours">Hours service pays in "00.0" format</param>
+        /// <returns></returns>
         public static void Add(string ServiceName, string Hours)
         {
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HourTracker\\Services", ServiceName, Hours);
         }
 
+        /// <summary>
+        /// Removes a service from the registry
+        /// </summary>
+        /// <param name="ServiceName">Service to remove from registry</param>
+        /// <returns></returns>
         public static void Remove(string ServiceName)
         {
             // TODO: Function to remove a service from the registry, not sure if this is needed but...
         }
 
+        /// <summary>
+        /// Returns a list of services stored in registry
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
         public static List<string> List
         {
             get
@@ -41,6 +57,13 @@ namespace Functions
     #region RO Functions
     public class RepairOrder
     {
+        /// <summary>
+        /// Adds repair order to data file
+        /// </summary>
+        /// <param name="Date">Date for repair order MMDDYY</param>
+        /// <param name="RepairOrder">RO Number</param>
+        /// <param name="Services">Services to add</param>
+        /// <returns></returns>
         public static void Add(string Date, string RepairOrder, List<string> Services)
         {
             List<string> filedata = new List<string>();
@@ -59,6 +82,11 @@ namespace Functions
             file.Close();
         }
 
+        /// <summary>
+        /// Removes a ro from data file
+        /// </summary>
+        /// <param name="RepairOrder">repair order number</param>
+        /// <returns></returns>
         public static void Remove(string RepairOrder)
         {
             List<string> lines = File.ReadAllLines(HoursFile.Location).ToList();
@@ -66,6 +94,11 @@ namespace Functions
             File.WriteAllLines(HoursFile.Location, lines);
         }
 
+        /// <summary>
+        /// Gets services for the passed ro
+        /// </summary>
+        /// <param name="RepairOrder">Repair order you want to get services for</param>
+        /// <returns></returns>
         public static string Services(string RepairOrder)
         {
             string arrayData;
@@ -95,6 +128,11 @@ namespace Functions
     #region DataFile Functions
     public class HoursFile
     {
+        /// <summary>
+        /// Returns a list of repair order numbers stored in data file
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
         public static List<string> RONumbers
         {
             get
@@ -112,6 +150,11 @@ namespace Functions
             }
         }
 
+        /// <summary>
+        /// Returns data file location
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns>data file location</returns>
         public static string Location
         {
             get
@@ -126,6 +169,11 @@ namespace Functions
     #region Credential Functions
     public class Credentials
     {
+        /// <summary>
+        /// Encrypt text
+        /// </summary>
+        /// <param name="clearText">txt you want to encrypt</param>
+        /// <returns></returns>
         public static string Encrypt(string clearText)
         {
             string EncryptionKey = "Ab41Dyy2Hm1dR98hEl";
@@ -148,6 +196,11 @@ namespace Functions
             return clearText;
         }
 
+        /// <summary>
+        /// Decrypt text
+        /// </summary>
+        /// <param name="cipherText">text you want to decrypt</param>
+        /// <returns></returns>
         public static string Decrypt(string cipherText)
         {
             string EncryptionKey = "Ab41Dyy2Hm1dR98hEl";
@@ -171,6 +224,12 @@ namespace Functions
             return cipherText;
         }
 
+        /// <summary>
+        /// Checks passed arguments against stored encrypted strings in registry
+        /// </summary>
+        /// <param name="Username">plain text username</param>
+        /// <param name="Password">plain text passwod</param>
+        /// <returns></returns>
         public static bool Check(string Username, string Password)
         {
             string x = Decrypt(Registry.GetValue("HKEY_CURRENT_USER\\Software\\HourTracker", "username", null).ToString());
