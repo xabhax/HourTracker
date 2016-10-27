@@ -127,6 +127,7 @@
             this.Name = "loginForm";
             this.ShowIcon = false;
             this.Text = "Hour Tracker -- Login";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyPressHandler);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Functions;
+using System.Windows.Input;
 
 namespace HourTracker
 {
@@ -62,6 +63,11 @@ namespace HourTracker
         private void CancelLogin(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void KeyPressHandler(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+
         }
     }
 }
